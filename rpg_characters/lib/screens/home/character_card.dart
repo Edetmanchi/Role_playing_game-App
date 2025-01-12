@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_characters/models/character.dart';
+import 'package:rpg_characters/shared/styled_text.dart';
+
 
 class CharacterCard extends StatelessWidget {
   const CharacterCard(this.character,{super.key});
-  final String character;
+
+  final Character character;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -10,7 +15,19 @@ class CharacterCard extends StatelessWidget {
         padding:const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
         child: Row(
           children: [
-            Text(character),
+            Image.asset('assets/img/vocations/${character.vocation.image}',
+              width: 50,
+            ),
+
+           const SizedBox(width: 50,),
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StyledHeading(character.name),
+                StyledText(character.vocation.title),
+              ],
+            ),
 
             const Expanded(
               child: SizedBox()

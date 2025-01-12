@@ -1,8 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:rpg_characters/screens/home/character_card.dart';
+import 'package:rpg_characters/shared/styled_appbar.dart';
 import 'package:rpg_characters/shared/styled_buttons.dart';
 import 'package:rpg_characters/shared/styled_text.dart';
+import 'package:rpg_characters/models/character.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,14 +11,12 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 class _HomeState extends State<Home> {
-  List characters = ['Edet', 'Effiong', 'Table', 'Chair', 'church','party', 'xavier'];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const StyledHeading('Your Characters'),
+        title:const StyledTitle('Your Characters'),
         centerTitle: true,
       ),
       body: Container(
