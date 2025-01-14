@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rpg_characters/models/vocation.dart';
+import 'package:rpg_characters/models/character.dart';
 import 'package:rpg_characters/screens/create/vocation_card.dart';
+import 'package:rpg_characters/screens/home/home.dart';
 import 'package:rpg_characters/shared/styled_buttons.dart';
 import 'package:rpg_characters/shared/styled_text.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rpg_characters/theme/theme.dart';         
+import 'package:rpg_characters/theme/theme.dart';
+import 'package:uuid/Uuid.dart'; 
+ 
+       
 
+var uuid = const Uuid();
 
 class CreateCharacter extends StatefulWidget {
   const CreateCharacter({super.key});
@@ -18,6 +24,7 @@ class CreateCharacter extends StatefulWidget {
 class _CreateCharacterState extends State<CreateCharacter> {
   final _textControllers = TextEditingController();
   final _sloganControllers = TextEditingController();
+
   // dispose function helps to overide the controllers and remove them from the build tree in compile time to save memory.
     @override
     void dispose() {
@@ -28,21 +35,64 @@ class _CreateCharacterState extends State<CreateCharacter> {
 
 
 
+
     handleFormSubmit(){
       if(_textControllers.text.trim().isEmpty){
-        print('Error, Please enter name');
+        // alert dislog for form control
+        showDialog(context: context, builder: (ctx) {
+          return AlertDialog(
+            title: const StyledHeading('Missing character Name'),
+            content:const  StyledText('Every character need a good name'),
+            actions: [
+              StyledButton(
+                onPressed: (){
+                  Navigator.pop(ctx);
+
+                }, 
+                child: const Text('Close'))
+            ],
+            actionsAlignment: MainAxisAlignment.center,
+          );
+        });
         return;
 
       }
       if(_sloganControllers.text.trim().isEmpty){
-        print('Eror, please enter slogan');
+        // alert dislog for form control
+        showDialog(context: context, builder: (ctx) {
+          return AlertDialog(
+            title: const StyledHeading('Missing character Slogan'),
+            content:const  StyledText('Every character need a good slogan'),
+            actions: [
+              StyledButton(
+                onPressed: (){
+                  Navigator.pop(ctx);
+
+                }, 
+                child: const Text('Close'))
+            ],
+            actionsAlignment: MainAxisAlignment.center,
+          );
+        });
         return;
       }
-      return;
+
+
+      // function to create new character when form is submitted using uuid
+      characters.add(Character(
+        name: _textControllers.text.trim(),
+        slogan: _sloganControllers.text.trim(),
+        vocation: selectedVocation,
+        id: uuid.v4()
+      ));
+
+      Navigator.push(context, MaterialPageRoute(
+        builder: (ctx) => const Home())) ;
     }
 
+
      // ontap function that triggers when the vocation card is fired
-      Vocation selectedVocation = Vocation.junkie;
+    Vocation selectedVocation = Vocation.junkie;
     void updateVocation (Vocation vocation){
       setState(() {
         selectedVocation = vocation;
@@ -107,18 +157,22 @@ class _CreateCharacterState extends State<CreateCharacter> {
           
                     // calling the each charater with thier vocations fron the vocation card
                     VocationCard(
+                      selected: selectedVocation == Vocation.raider,
                       onTap: updateVocation,
                       vocation: Vocation.raider,
                     ),
                     VocationCard(
+                      selected: selectedVocation == Vocation.junkie,
                       onTap: updateVocation,
                       vocation: Vocation.junkie,
                     ),
                     VocationCard(
+                      selected: selectedVocation == Vocation.ninja,
                       onTap: updateVocation,
                       vocation: Vocation.ninja,
                     ),
                     VocationCard(
+                      selected: selectedVocation == Vocation.wizard,
                       onTap: updateVocation,
                       vocation: Vocation.wizard,
                     ),

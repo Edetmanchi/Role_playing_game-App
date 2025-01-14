@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_characters/screens/create/create_character.dart';
 import 'package:rpg_characters/screens/home/character_card.dart';
 import 'package:rpg_characters/shared/styled_appbar.dart';
 import 'package:rpg_characters/shared/styled_buttons.dart';
@@ -37,7 +38,10 @@ class _HomeState extends State<Home> {
 
 
             StyledButton(
-              onPressed:(){},
+              onPressed:(){
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (ctx) => const CreateCharacter()));
+              },
               child:const StyledHeading('Add character'))
           ],
         )

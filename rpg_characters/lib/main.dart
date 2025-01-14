@@ -6,7 +6,7 @@ import 'package:rpg_characters/theme/theme.dart';
 void main(){
   runApp(MaterialApp(
     theme: primaryTheme,
-    // home:const Home(),
-    home:const CreateCharacter(),
+    home:const Home(),
+    // home:const CreateCharacter(),
   ));
 }
