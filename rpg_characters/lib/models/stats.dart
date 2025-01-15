@@ -5,6 +5,8 @@ mixin Stats {
   int _defence =10;
   int _skill =10;
 
+  // getters
+
  int get points => _points;
   Map<String, int> get statsAsMap=>{
     'points': _points,

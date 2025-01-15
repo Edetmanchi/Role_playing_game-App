@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_characters/models/character.dart';
-import 'package:rpg_characters/models/stat.dart';
 import 'package:rpg_characters/shared/styled_text.dart';
 import 'package:rpg_characters/theme/theme.dart';
 
@@ -41,58 +40,9 @@ class _StatsTableState extends State<StatsTable> {
 
           // stats table
           Table(
-            children: widget.character.statsAsFormattedList.map((stat) {
-              return TableRow(
-                decoration: BoxDecoration(color: AppColors.secondaryColor.withOpacity(0.5)),
-                children: [
-  
-                  // stat title (e.g. health)
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: StyledHeading(stat['title']!),
-                    ),
-                  ),
-
-                  // stat value
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: StyledHeading(stat['value']!),
-                    ),
-                  ),
-
-                  // icon to increase stat
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: IconButton(
-                      icon:const Icon(Icons.arrow_upward), color: AppColors.textColor,
-                      onPressed: () {
-                        setState(() {
-                          widget.character.increaseStat(stat['title']!);
-                        });
-                      },
-                    ),
-                  ),
-
-                  // icon to decrease stat
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: GestureDetector(
-                      child: Icon(Icons.arrow_downward, color: AppColors.textColor),
-                      onTap: () {
-                        setState(() {
-                          widget.character.decreaseStat(stat['title']!);
-                        });
-                      },
-                    ),
-                  ),
-
-                ]
-              );
-            }).toList()
+            children: widget.statsAsFormattedList.map((stat) {
+              
+            }).toList(),
           ),
 
         ],
