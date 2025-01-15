@@ -39,19 +39,25 @@ class _CreateCharacterState extends State<CreateCharacter> {
     handleFormSubmit(){
       if(_textControllers.text.trim().isEmpty){
         // alert dislog for form control
-        showDialog(context: context, builder: (ctx) {
+        showDialog(context: context, builder: (ctx){
           return AlertDialog(
-            title: const StyledHeading('Missing character Name'),
-            content:const  StyledText('Every character need a good name'),
+
+            // styling to overide the default colors for ddialog (Alternatively, this has been defined in the theeme file)
+            // backgroundColor: AppColors.secondaryColor,
+            // surfaceTintColor: Colors.transparent,
+            
+            title:const StyledHeading('Character Name missing'),
+            content: const StyledText('Every good character need a name ...'),
             actions: [
               StyledButton(
                 onPressed: (){
                   Navigator.pop(ctx);
-
                 }, 
-                child: const Text('Close'))
+                child: const StyledText('Close'))
             ],
             actionsAlignment: MainAxisAlignment.center,
+
+
           );
         });
         return;
@@ -61,6 +67,10 @@ class _CreateCharacterState extends State<CreateCharacter> {
         // alert dislog for form control
         showDialog(context: context, builder: (ctx) {
           return AlertDialog(
+            
+            // styling to overide the default colors for ddialog (Alternatively, this has been defined in the theeme file)
+            // backgroundColor: AppColors.secondaryColor,
+            // surfaceTintColor: Colors.transparent,
             title: const StyledHeading('Missing character Slogan'),
             content:const  StyledText('Every character need a good slogan'),
             actions: [
@@ -89,8 +99,6 @@ class _CreateCharacterState extends State<CreateCharacter> {
       Navigator.push(context, MaterialPageRoute(
         builder: (ctx) => const Home())) ;
     }
-
-
      // ontap function that triggers when the vocation card is fired
     Vocation selectedVocation = Vocation.junkie;
     void updateVocation (Vocation vocation){

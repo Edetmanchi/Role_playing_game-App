@@ -19,6 +19,8 @@ class Character {
   final String id;
   bool _isFav = false;
 
+  get statsAsFormattedList => null;
+
   void toggleIsFav(){
     _isFav = !_isFav; 
   }
