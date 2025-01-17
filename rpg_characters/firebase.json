@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"rpg-game-app","appId":"1:268045674347:android:5afd57642e50ab8dc50e2e","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"rpg-game-app","configurations":{"android":"1:268045674347:android:5afd57642e50ab8dc50e2e","ios":"1:268045674347:ios:d504e6cd6192837dc50e2e"}}}}}}

@@ -110,6 +110,7 @@ class _CreateCharacterState extends State<CreateCharacter> {
           vocation: selectedVocation,
           id: uuid.v4(),
         ));
+  
 
         Navigator.push(context, MaterialPageRoute(
           builder: (ctx) => const Home())) ;
