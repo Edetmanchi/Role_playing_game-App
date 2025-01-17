@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:rpg_characters/models/vocation.dart';
 import 'package:rpg_characters/models/character.dart';
 import 'package:rpg_characters/screens/create/vocation_card.dart';
@@ -8,6 +9,7 @@ import 'package:rpg_characters/shared/styled_buttons.dart';
 import 'package:rpg_characters/shared/styled_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rpg_characters/theme/theme.dart';
+import 'package:rpg_characters/utilities/character_store.dart';
 import 'package:uuid/Uuid.dart'; 
  
        
@@ -87,18 +89,33 @@ class _CreateCharacterState extends State<CreateCharacter> {
         return;
       }
 
-
+      // WITHOUT GLOBAL STATE
       // function to create new character when form is submitted using uuid
-      characters.add(Character(
-        name: _textControllers.text.trim(),
-        slogan: _sloganControllers.text.trim(),
-        vocation: selectedVocation,
-        id: uuid.v4()
-      ));
+      // characters.add(Character(
+      //   name: _textControllers.text.trim(),
+      //   slogan: _sloganControllers.text.trim(),
+      //   vocation: selectedVocation,
+      //   id: uuid.v4()
+      // ));
+      
 
-      Navigator.push(context, MaterialPageRoute(
-        builder: (ctx) => const Home())) ;
+      //WITH GLOBAL STATE
+      // using the global state provider
+      Provider.of<CharacterStore>(context, listen: false)
+        // using the addcharacter function we define to save new character on the character store (GSTATE file)  
+       .addcharacter(
+          Character(
+          name: _textControllers.text.trim(),
+          slogan: _sloganControllers.text.trim(),
+          vocation: selectedVocation,
+          id: uuid.v4(),
+        ));
+
+        Navigator.push(context, MaterialPageRoute(
+          builder: (ctx) => const Home())) ;
     }
+
+
      // ontap function that triggers when the vocation card is fired
     Vocation selectedVocation = Vocation.junkie;
     void updateVocation (Vocation vocation){
