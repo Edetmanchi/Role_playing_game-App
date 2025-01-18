@@ -8,9 +8,7 @@ import 'package:rpg_characters/utilities/character_store.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-// ...
-
-
+// .
 void main() async{
   // function to initiate network request between app and firebase(make it an async function)
 await Firebase.initializeApp(

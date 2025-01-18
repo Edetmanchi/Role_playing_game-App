@@ -103,8 +103,7 @@ class _CreateCharacterState extends State<CreateCharacter> {
       // using the global state provider
       Provider.of<CharacterStore>(context, listen: false)
         // using the addcharacter function we define to save new character on the character store (GSTATE file)  
-       .addcharacter(
-          Character(
+       .addcharacter(Character(
           name: _textControllers.text.trim(),
           slogan: _sloganControllers.text.trim(),
           vocation: selectedVocation,
